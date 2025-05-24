@@ -8,21 +8,29 @@ import java.net.http.HttpResponse;
 
 public class ConsumoApi {
     public String obterDados(String endereco) {
-        HttpClient client = HttpClient.newHttpClient();
+        HttpClient client = HttpClient.newBuilder()
+                .followRedirects(HttpClient.Redirect.ALWAYS)
+                .build();
+
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(endereco))
+                .GET()
                 .build();
-        HttpResponse<String> response = null;
-        try {
-            response = client
-                    .send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
 
-        String json = response.body();
-        return json;
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            int status = response.statusCode();
+            if (status == 200) {
+                return response.body();
+            } else {
+                System.out.println("Erro na requisição. Código HTTP: " + status);
+                return null;
+            }
+
+        } catch (IOException | InterruptedException e) {
+            System.out.println("Erro na requisição: " + e.getMessage());
+            return null;
+        }
     }
 }

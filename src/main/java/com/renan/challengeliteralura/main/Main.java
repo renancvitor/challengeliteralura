@@ -1,8 +1,13 @@
 package com.renan.challengeliteralura.main;
 
+import com.renan.challengeliteralura.model.DadosLivros;
+import com.renan.challengeliteralura.model.DadosResposta;
 import com.renan.challengeliteralura.services.ConsumoApi;
 import com.renan.challengeliteralura.services.ConverteDados;
 
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class Main {
@@ -10,9 +15,9 @@ public class Main {
     private ConsumoApi consumoApi = new ConsumoApi();
     private ConverteDados converteDados = new ConverteDados();
 
-    private final String URL = "https://gutendex.com/books?search=";
+    private final String ENDERECO = "https://gutendex.com/books?search=";
 
-    public void menu() {
+    public void menu() throws IOException {
         var opcao = -1;
         while (opcao != 0) {
             var menu = """
@@ -58,7 +63,39 @@ public class Main {
         }
     }
 
-    private void buscarLivro() {
+    private DadosLivros getDadosLivrows() {
+        System.out.print("Digite o nome do livro para buscar: ");
+        var nomeLivro = scanner.nextLine();
+
+        try {
+            String nomeLivroEncoded = URLEncoder.encode(nomeLivro, StandardCharsets.UTF_8);
+            var json = consumoApi.obterDados(ENDERECO + nomeLivroEncoded);
+
+            if (json == null || json.isBlank()) {
+                System.out.println("Resposta da API vazia.");
+                return null;
+            }
+
+            DadosResposta resposta = converteDados.obterDados(json, DadosResposta.class);
+
+            if (resposta != null && resposta.results() != null && !resposta.results().isEmpty()) {
+                return resposta.results().get(0);
+            } else {
+                System.out.println("Nenhum livro encontrado.");
+                return null;
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao buscar dados: " + e.getMessage());
+            return null;
+        }
+    }
+
+    private void buscarLivro() throws IOException {
+        DadosLivros dados = getDadosLivrows();
+        System.out.println(dados);
+//        Livro livro = new Livro(dados);
+//        repository.save(livro);
+//        System.out.println(dados);
     }
 
     private void listarLivro() {
