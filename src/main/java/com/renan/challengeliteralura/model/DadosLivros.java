@@ -1,7 +1,10 @@
 package com.renan.challengeliteralura.model;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record DadosLivros() {
+public record DadosLivros(@JsonAlias("title") String titulo,
+                          @JsonAlias("languages") String idioma,
+                          @JsonAlias("download_count") Integer downloads) {
 }

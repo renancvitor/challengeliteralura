@@ -16,17 +16,14 @@ public class Main {
         var opcao = -1;
         while (opcao != 0) {
             var menu = """
-                    1 - Buscar séries
-                    2 - Buscar episódios.
-                    3 - Listar séries buscadas
-                    4 - Buscar série por título
-                    5 - Buscar séries por ator
-                    6 - Top 5 séries
-                    7 - Buscar séries por categoria
-                    8 - Buscar por número máximo temporadas
-                    9 - Buscar episódios por trecho
-                    10 - Top 5 episódios por série
-                    11 - Buscar episódios a partir de uma data
+                    ******************************
+                    Escolha o número de sua opção:
+                    ******************************
+                    1. Buscar livro pelo título
+                    2. Listar livro pelo título
+                    3. Listar autores registrados
+                    4. Listar autores vivos em um determinado ano
+                    5. Listar livros em um determinado idioma
                                     
                     0 - Sair
                     """;
@@ -37,37 +34,19 @@ public class Main {
 
             switch (opcao) {
                 case 1:
-                    buscarSerieWeb();
+                    buscarLivro();
                     break;
                 case 2:
-                    buscarEpisodioPorSerie();
+                    listarLivro();
                     break;
                 case 3:
-                    listarSeriesBuscadas();
+                    listarAutores();
                     break;
                 case 4:
-                    buscarSeriePorTitulo();
+                    listarAutoresVivosPorXAno();
                     break;
                 case 5:
-                    buscaSeriesPorAtor();
-                    break;
-                case 6:
-                    buscarTop5Series();
-                    break;
-                case 7:
-                    buscarSeriesPorCategoria();
-                    break;
-                case 8:
-                    buscarPorNumeroMaxTemporadas();
-                    break;
-                case 9:
-                    buscaEpisodioPorTrecho();
-                    break;
-                case 10:
-                    top5EpisodiosPorSerie();
-                    break;
-                case 11:
-                    buscarEpisodiosDepoisDeUmaData();
+                    listarLivrosPorIdioma();
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -77,5 +56,20 @@ public class Main {
                     System.out.println("Opção inválida");
             }
         }
+    }
+
+    private void buscarLivro() {
+    }
+
+    private void listarLivro() {
+    }
+
+    private void listarAutores() {
+    }
+
+    private void listarAutoresVivosPorXAno() {
+    }
+
+    private void listarLivrosPorIdioma() {
     }
 }
