@@ -15,6 +15,7 @@ public class Livro {
                 .map(a -> {
                     Autor autor = new Autor();
                     autor.setNome(a.nome());
+                    autor.adicionarLivro(this);
                     return autor;
                 })
                 .collect(Collectors.toList());

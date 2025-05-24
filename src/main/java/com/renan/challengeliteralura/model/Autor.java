@@ -1,9 +1,14 @@
 package com.renan.challengeliteralura.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Autor {
     private String nome;
-    private Integer dataNascimento;
-    private Integer dataFalecimento;
+    private Integer anoNascimento;
+    private Integer anoFalecimento;
+    private List<Livro> livros = new ArrayList<>();
 
     public String getNome() {
         return nome;
@@ -13,32 +18,47 @@ public class Autor {
         this.nome = nome;
     }
 
-    public Integer getDataNascimento() {
-        return dataNascimento;
+    public Integer getAnoNascimento() {
+        return anoNascimento;
     }
 
-    public void setDataNascimento(Integer dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setAnoNascimento(Integer anoNascimento) {
+        this.anoNascimento = anoNascimento;
     }
 
-    public Integer getDataFalecimento() {
-        return dataFalecimento;
+    public Integer getAnoFalecimento() {
+        return anoFalecimento;
     }
 
-    public void setDataFalecimento(Integer dataFalecimento) {
-        this.dataFalecimento = dataFalecimento;
+    public void setAnoFalecimento(Integer anoFalecimento) {
+        this.anoFalecimento = anoFalecimento;
+    }
+
+    public List<Livro> getLivros() {
+        return livros;
+    }
+
+    public void setLivros(List<Livro> livros) {
+        this.livros = livros;
     }
 
     public String getNomeSimples() {
         return nome;
     }
 
+    public void adicionarLivro(Livro livro) {
+        this.livros.add(livro);
+    }
 
     @Override
     public String toString() {
+        String livrosString = livros.stream()
+                .map(Livro::getTitulo)  // só o título!
+                .collect(Collectors.joining(", "));
         return "Autor: " +
                 "\nNome: '" + nome + '\'' +
-                "\nData de nascimento: " + dataNascimento +
-                "\nData de falecimento: " + (dataFalecimento != null ? dataFalecimento : "Ainda vivo");
+                "\nData de nascimento: " + anoNascimento +
+                "\nData de falecimento: " + (anoFalecimento != null ? anoFalecimento : "Ainda vivo") +
+                "\nLivros: " + livrosString;
     }
 }
