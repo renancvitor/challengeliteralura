@@ -9,6 +9,9 @@ import com.renan.challengeliteralura.services.ConverteDados;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Main {
@@ -17,6 +20,16 @@ public class Main {
     private ConverteDados converteDados = new ConverteDados();
 
     private final String ENDERECO = "https://gutendex.com/books?search=";
+
+    private List<DadosLivros> dadosLivros = new ArrayList<>();
+
+    // private LivrosRepository repository;
+
+    private Optional<Livro> livroBusca;
+
+    // public Main(LivroRepository repository) {
+    //     this.repository = repository;
+    // }
 
     public void menu() throws IOException {
         var opcao = -1;
@@ -55,11 +68,11 @@ public class Main {
                     listarLivrosPorIdioma();
                     break;
                 case 0:
-                    System.out.println("Saindo...");
+                    System.out.println("Sessão encerrada.");
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Opção inválida");
+                    System.out.println("Opção inválida!");
             }
         }
     }
