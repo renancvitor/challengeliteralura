@@ -64,9 +64,9 @@ public class Livro {
                 .map(String::toString)
                 .collect(Collectors.joining("\n"));
         return "\n~*~*~~*~ LIVRO ~*~*~~*~" +
-                "\nTítulo: " + titulo +
-                "\nAutor: " + autoresString  +
-                "\nIdiomas: " + idiomasSring +
-                "\nDownloads: " + downloads;
+               "\nTítulo: " + titulo +
+               "\nAutor: " + autoresString  +
+               "\nIdiomas: " + idiomasSring +
+               "\nDownloads: " + downloads;
     }
 }
