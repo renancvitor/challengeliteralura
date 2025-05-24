@@ -53,12 +53,11 @@ public class Autor {
     @Override
     public String toString() {
         String livrosString = livros.stream()
-                .map(Livro::getTitulo)  // só o título!
+                .map(Livro::getTitulo)
                 .collect(Collectors.joining(", "));
-        return "Autor: " +
-                "\nNome: '" + nome + '\'' +
-                "\nData de nascimento: " + anoNascimento +
-                "\nData de falecimento: " + (anoFalecimento != null ? anoFalecimento : "Ainda vivo") +
-                "\nLivros: " + livrosString;
+        return "\nAutor: '" + nome + '\'' +
+               "\nData de nascimento: " + anoNascimento +
+               "\nData de falecimento: " + (anoFalecimento != null ? anoFalecimento : "Ainda vivo") +
+               "\nLivros: " + livrosString;
     }
 }
