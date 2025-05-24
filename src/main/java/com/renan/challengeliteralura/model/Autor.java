@@ -29,6 +29,11 @@ public class Autor {
         this.dataFalecimento = dataFalecimento;
     }
 
+    public String getNomeSimples() {
+        return nome;
+    }
+
+
     @Override
     public String toString() {
         return "Autor: " +

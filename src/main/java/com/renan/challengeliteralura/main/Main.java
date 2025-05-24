@@ -2,6 +2,7 @@ package com.renan.challengeliteralura.main;
 
 import com.renan.challengeliteralura.model.DadosLivros;
 import com.renan.challengeliteralura.model.DadosResposta;
+import com.renan.challengeliteralura.model.Livro;
 import com.renan.challengeliteralura.services.ConsumoApi;
 import com.renan.challengeliteralura.services.ConverteDados;
 
@@ -21,7 +22,7 @@ public class Main {
         var opcao = -1;
         while (opcao != 0) {
             var menu = """
-                    ******************************
+                    \n******************************
                     Escolha o número de sua opção:
                     ******************************
                     1. Buscar livro pelo título
@@ -92,10 +93,9 @@ public class Main {
 
     private void buscarLivro() throws IOException {
         DadosLivros dados = getDadosLivrows();
-        System.out.println(dados);
-//        Livro livro = new Livro(dados);
+        Livro livro = new Livro(dados);
 //        repository.save(livro);
-//        System.out.println(dados);
+        System.out.println(livro);
     }
 
     private void listarLivro() {

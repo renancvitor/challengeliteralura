@@ -9,6 +9,19 @@ public class Livro {
     private List<String> idiomas;
     private Integer downloads;
 
+    public Livro(DadosLivros dadosLivros) {
+        this.titulo = dadosLivros.titulo();
+        this.autores = dadosLivros.autores().stream()
+                .map(a -> {
+                    Autor autor = new Autor();
+                    autor.setNome(a.nome());
+                    return autor;
+                })
+                .collect(Collectors.toList());
+        this.idiomas = dadosLivros.idiomas();
+        this.downloads = dadosLivros.downloads();
+    }
+
     public String getTitulo() {
         return titulo;
     }
@@ -43,13 +56,16 @@ public class Livro {
 
     @Override
     public String toString() {
-        String autoresStr = autores.stream()
-                .map(Autor::toString)
+        String autoresString = autores.stream()
+                .map(Autor::getNomeSimples)
                 .collect(Collectors.joining("\n"));
-        return "Livro: " +
-                "\nTítulo: '" + titulo + '\'' +
-                "\nAutor: " + autoresStr  +
-                "\nIdiomas: " + idiomas +
+        String idiomasSring = idiomas.stream()
+                .map(String::toString)
+                .collect(Collectors.joining("\n"));
+        return "\n~*~*~~*~ LIVRO ~*~*~~*~" +
+                "\nTítulo: " + titulo +
+                "\nAutor: " + autoresString  +
+                "\nIdiomas: " + idiomasSring +
                 "\nDownloads: " + downloads;
     }
 }
