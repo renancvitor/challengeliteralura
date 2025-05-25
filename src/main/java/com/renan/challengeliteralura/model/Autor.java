@@ -6,18 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//@Entity
-//@Table(name = "autores")
+@Entity
+@Table(name = "autores")
 public class Autor {
-  //  @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@Column(unique = true)
+    @Column(unique = true)
     private String nome;
 
     private Integer anoNascimento;
     private Integer anoFalecimento;
+
+    @OneToMany
     private List<Livro> livros = new ArrayList<>();
 
     public Long getId() {

@@ -16,8 +16,8 @@ public class Livro {
     @Column(unique = true)
     private String titulo;
 
-    @Transient
-    private List<Autor> autores = new ArrayList<>();
+    @ManyToOne
+    private Autor autor;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "livro_idiomas", joinColumns = @JoinColumn(name = "livro_id"))
@@ -29,14 +29,15 @@ public class Livro {
 
     public Livro(DadosLivros dadosLivros) {
         this.titulo = dadosLivros.titulo();
-        this.autores = dadosLivros.autores().stream()
-                .map(a -> {
-                    Autor autor = new Autor();
-                    autor.setNome(a.nome());
-                    autor.adicionarLivro(this);
-                    return autor;
-                })
-                .collect(Collectors.toList());
+        this.autor = dadosLivros.autor();
+//        this.autor = dadosLivros.autor().stream()
+//                .map(a -> {
+//                    Autor autor = new Autor();
+//                    autor.setNome(a.nome());
+//                    autor.adicionarLivro(this);
+//                    return autor;
+//                })
+//                .collect(Collectors.toList());
         this.idiomas = dadosLivros.idiomas();
         this.downloads = dadosLivros.downloads();
     }
@@ -57,12 +58,12 @@ public class Livro {
         this.titulo = titulo;
     }
 
-    public List<Autor> getAutores() {
-        return autores;
+    public Autor getautor() {
+        return autor;
     }
 
-    public void setAutores(List<Autor> autores) {
-        this.autores = autores;
+    public void setautor(Autor autor) {
+        this.autor = autor;
     }
 
     public List<String> getIdiomas() {
@@ -83,9 +84,9 @@ public class Livro {
 
     @Override
     public String toString() {
-        String autoresString = autores.stream()
-                .map(Autor::getNomeSimples)
-                .collect(Collectors.joining("\n"));
+//        String autorString = autor.stream()
+//                .map(Autor::getNomeSimples)
+//                .collect(Collectors.joining("\n"));
 
         String idiomasString = idiomas.stream()
                 .map(String::toString)
@@ -93,7 +94,7 @@ public class Livro {
 
         return "\n~*~*~~*~ LIVRO ~*~*~~*~" +
                "\nTítulo: " + titulo +
-               "\nAutor: " + autoresString  +
+               "\nAutor: " + autor.getNome()  +
                "\nIdiomas: " + idiomasString +
                "\nDownloads: " + downloads;
     }

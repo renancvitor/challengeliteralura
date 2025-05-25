@@ -7,7 +7,7 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record DadosLivros(@JsonAlias("title") String titulo,
-                          @JsonAlias("authors") List<DadosAutores> autores,
+                          @JsonAlias("authors") Autor autor,
                           @JsonAlias("languages") List<String> idiomas,
                           @JsonAlias("download_count") Integer downloads) {
 }
