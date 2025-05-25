@@ -19,8 +19,10 @@ public class Autor {
     private Integer anoNascimento;
     private Integer anoFalecimento;
 
-    @OneToMany
+    @OneToMany(mappedBy = "autor")
     private List<Livro> livros = new ArrayList<>();
+
+    public Autor() {}
 
     public Long getId() {
         return id;
