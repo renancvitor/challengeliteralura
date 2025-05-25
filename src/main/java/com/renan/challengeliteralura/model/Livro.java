@@ -16,7 +16,8 @@ public class Livro {
     @Column(unique = true)
     private String titulo;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "autor_id")
     private Autor autor;
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -29,15 +30,24 @@ public class Livro {
 
     public Livro(DadosLivros dadosLivros) {
         this.titulo = dadosLivros.titulo();
-        this.autor = dadosLivros.autor();
-//        this.autor = dadosLivros.autor().stream()
-//                .map(a -> {
+        if (dadosLivros.autores() != null && !dadosLivros.autores().isEmpty()) {
+            this.autor = new Autor(dadosLivros.autores().get(0));
+        } else {
+            this.autor = null; // ou algum valor padrão, se preferir
+        }
+        //this.autor = dadosLivros.autor();
+
+//        this.autores = dadosLivros.autores().stream()
+//                .map(dto -> {
 //                    Autor autor = new Autor();
-//                    autor.setNome(a.nome());
+//                    autor.setNome(dto.nome());
+//                    autor.setAnoNascimento(dto.anoNascimento());
+//                    autor.setAnoFalecimento(dto.anoFalecimento());
 //                    autor.adicionarLivro(this);
 //                    return autor;
 //                })
 //                .collect(Collectors.toList());
+//
         this.idiomas = dadosLivros.idiomas();
         this.downloads = dadosLivros.downloads();
     }
@@ -58,11 +68,29 @@ public class Livro {
         this.titulo = titulo;
     }
 
-    public Autor getautor() {
+//    public Autor getautor() {
+//        return autor;
+//    }
+//
+//    public void setautor(Autor autor) {
+//        this.autor = autor;
+//    }
+
+
+//    public List<Autor> getAutores() {
+//        return autores;
+//    }
+//
+//    public void setAutores(List<Autor> autores) {
+//        this.autores = autores;
+//    }
+
+
+    public Autor getAutor() {
         return autor;
     }
 
-    public void setautor(Autor autor) {
+    public void setAutor(Autor autor) {
         this.autor = autor;
     }
 
@@ -84,7 +112,7 @@ public class Livro {
 
     @Override
     public String toString() {
-//        String autorString = autor.stream()
+//        String autorString = autores.stream()
 //                .map(Autor::getNomeSimples)
 //                .collect(Collectors.joining("\n"));
 
@@ -95,6 +123,7 @@ public class Livro {
         return "\n~*~*~~*~ LIVRO ~*~*~~*~" +
                "\nTítulo: " + titulo +
                "\nAutor: " + autor.getNome()  +
+               //"\nAutor: " + autorString  +
                "\nIdiomas: " + idiomasString +
                "\nDownloads: " + downloads;
     }

@@ -1,5 +1,6 @@
 package com.renan.challengeliteralura.model;
 
+import com.renan.challengeliteralura.dto.AutorDTO;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -19,10 +20,22 @@ public class Autor {
     private Integer anoNascimento;
     private Integer anoFalecimento;
 
-    @OneToMany(mappedBy = "autor")
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Livro> livros = new ArrayList<>();
 
     public Autor() {}
+
+//    public Autor(DadosLivros dadosLivros) {
+//        this.nome = dadosLivros.autores().get(0).nome();
+//        this.anoNascimento = dadosLivros.autores().get(0).anoNascimento();
+//        this.anoFalecimento = dadosLivros.autores().get(0).anoFalecimento();
+//    }
+
+    public Autor(AutorDTO autorDTO) {
+        this.nome = autorDTO.nome();
+        this.anoNascimento = autorDTO.anoNascimento();
+        this.anoFalecimento = autorDTO.anoFalecimento();
+    }
 
     public Long getId() {
         return id;
@@ -78,7 +91,7 @@ public class Autor {
                 .map(Livro::getTitulo)
                 .collect(Collectors.joining(", "));
 
-        return "\nAutor: '" + nome + '\'' +
+        return "\nAutor: " + nome +
                "\nData de nascimento: " + anoNascimento +
                "\nData de falecimento: " + (anoFalecimento != null ? anoFalecimento : "Ainda vivo") +
                "\nLivros: " + livrosString;

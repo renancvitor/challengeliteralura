@@ -1,9 +1,12 @@
 package com.renan.challengeliteralura.main;
 
+import com.renan.challengeliteralura.dto.AutorDTO;
+import com.renan.challengeliteralura.model.Autor;
 import com.renan.challengeliteralura.model.DadosLivros;
 import com.renan.challengeliteralura.model.DadosResposta;
 import com.renan.challengeliteralura.model.Livro;
 import com.renan.challengeliteralura.repository.LivrosRepository;
+import com.renan.challengeliteralura.services.AutorRepository;
 import com.renan.challengeliteralura.services.ConsumoApi;
 import com.renan.challengeliteralura.services.ConverteDados;
 
@@ -21,12 +24,17 @@ public class Main {
 
     private List<DadosLivros> dadosLivros = new ArrayList<>();
 
-    private LivrosRepository repository;
+    private LivrosRepository livrosRepository;
+    private AutorRepository autorRepository;
 
     private Optional<Livro> livroBusca;
 
-    public Main(LivrosRepository repository) {
-         this.repository = repository;
+    private List<Livro> livros = new ArrayList<>();
+    private List<Autor> autores = new ArrayList<>();
+
+    public Main(AutorRepository autorRepository, LivrosRepository livrosRepository) {
+         this.autorRepository = autorRepository;
+         this.livrosRepository = livrosRepository;
     }
 
     public void menu() throws IOException {
@@ -103,20 +111,30 @@ public class Main {
     }
 
     private void buscarLivro() throws IOException {
-        DadosLivros dados = getDadosLivrows();
-        Livro livro = new Livro(dados);
-        repository.save(livro);
-        System.out.println(dados);
+        DadosLivros dadosLivros = getDadosLivrows();
+
+        Autor autor = new Autor(dadosLivros.autores().get(0));
+        Livro livro = new Livro(dadosLivros);
+
+        livro.setAutor(autor);
+        autor.getLivros().add(livro);
+
+        livrosRepository.save(livro);
+        System.out.println(dadosLivros);
     }
 
     private void listarLivro() {
-        List<Livro> livros = repository.findAll();
+        livros = livrosRepository.findAll();
         livros.stream()
                 .sorted(Comparator.comparing(Livro::getTitulo))
                 .forEach(System.out::println);
     }
 
     private void listarAutores() {
+        autores = autorRepository.findAll();
+        autores.stream()
+                .sorted(Comparator.comparing(Autor::getNome))
+                .forEach(System.out::println);
     }
 
     private void listarAutoresVivosPorXAno() {
