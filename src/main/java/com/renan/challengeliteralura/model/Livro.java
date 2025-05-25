@@ -1,13 +1,31 @@
 package com.renan.challengeliteralura.model;
 
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Entity
+@Table(name = "livros")
 public class Livro {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(unique = true)
     private String titulo;
-    private List<Autor> autores;
-    private List<String> idiomas;
+
+    @Transient
+    private List<Autor> autores = new ArrayList<>();
+
+    @ElementCollection
+    @CollectionTable(name = "livro_idiomas", joinColumns = @JoinColumn(name = "livro_id"))
+    @Column(name = "idioma")
+    private List<String> idiomas = new ArrayList<>();
     private Integer downloads;
+
+    public Livro() {}
 
     public Livro(DadosLivros dadosLivros) {
         this.titulo = dadosLivros.titulo();
@@ -21,6 +39,14 @@ public class Livro {
                 .collect(Collectors.toList());
         this.idiomas = dadosLivros.idiomas();
         this.downloads = dadosLivros.downloads();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -60,13 +86,15 @@ public class Livro {
         String autoresString = autores.stream()
                 .map(Autor::getNomeSimples)
                 .collect(Collectors.joining("\n"));
-        String idiomasSring = idiomas.stream()
+
+        String idiomasString = idiomas.stream()
                 .map(String::toString)
                 .collect(Collectors.joining("\n"));
+
         return "\n~*~*~~*~ LIVRO ~*~*~~*~" +
                "\nTítulo: " + titulo +
                "\nAutor: " + autoresString  +
-               "\nIdiomas: " + idiomasSring +
+               "\nIdiomas: " + idiomasString +
                "\nDownloads: " + downloads;
     }
 }
