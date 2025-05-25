@@ -10,10 +10,7 @@ import com.renan.challengeliteralura.services.ConverteDados;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     private Scanner scanner = new Scanner(System.in);
@@ -113,6 +110,10 @@ public class Main {
     }
 
     private void listarLivro() {
+        List<Livro> livros = repository.findAll();
+        livros.stream()
+                .sorted(Comparator.comparing(Livro::getTitulo))
+                .forEach(System.out::println);
     }
 
     private void listarAutores() {
