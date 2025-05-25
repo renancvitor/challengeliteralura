@@ -3,6 +3,7 @@ package com.renan.challengeliteralura.main;
 import com.renan.challengeliteralura.model.DadosLivros;
 import com.renan.challengeliteralura.model.DadosResposta;
 import com.renan.challengeliteralura.model.Livro;
+import com.renan.challengeliteralura.repository.LivrosRepository;
 import com.renan.challengeliteralura.services.ConsumoApi;
 import com.renan.challengeliteralura.services.ConverteDados;
 
@@ -23,13 +24,13 @@ public class Main {
 
     private List<DadosLivros> dadosLivros = new ArrayList<>();
 
-    // private LivrosRepository repository;
+    private LivrosRepository repository;
 
     private Optional<Livro> livroBusca;
 
-    // public Main(LivroRepository repository) {
-    //     this.repository = repository;
-    // }
+    public Main(LivrosRepository repository) {
+         this.repository = repository;
+    }
 
     public void menu() throws IOException {
         var opcao = -1;
@@ -107,8 +108,8 @@ public class Main {
     private void buscarLivro() throws IOException {
         DadosLivros dados = getDadosLivrows();
         Livro livro = new Livro(dados);
-//        repository.save(livro);
-        System.out.println(livro);
+        repository.save(livro);
+        System.out.println(dados);
     }
 
     private void listarLivro() {
