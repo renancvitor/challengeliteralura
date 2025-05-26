@@ -113,13 +113,16 @@ public class Main {
     private void buscarLivro() throws IOException {
         DadosLivros dadosLivros = getDadosLivrows();
 
-        String nomeAutor = dadosLivros.autores().get(0).nome();
+        AutorDTO autorDTO = dadosLivros.autores().get(0);
+        String nomeAutor = autorDTO.nome();
+//        String nomeAutor = dadosLivros.autores().get(0).nome();
 
         List<Autor> autores = autorRepository.findByNome(nomeAutor);
         Autor autor = autores.isEmpty() ? null : autores.get(0);
 
         if (autor == null) {
-            autor = new Autor(nomeAutor);
+//            autor = new Autor(nomeAutor);
+            autor = new Autor(autorDTO);
             autorRepository.save(autor);
         }
 
