@@ -49,7 +49,6 @@ public class Main {
                     3. Listar autores registrados
                     4. Listar autores vivos em um determinado ano
                     5. Listar livros em um determinado idioma
-                                    
                     0 - Sair
                     """;
 
