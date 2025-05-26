@@ -2,7 +2,7 @@ package com.renan.challengeliteralura;
 
 import com.renan.challengeliteralura.main.Main;
 import com.renan.challengeliteralura.repository.LivrosRepository;
-import com.renan.challengeliteralura.services.AutorRepository;
+import com.renan.challengeliteralura.repository.AutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

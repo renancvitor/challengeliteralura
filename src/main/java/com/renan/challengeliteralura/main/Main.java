@@ -6,7 +6,7 @@ import com.renan.challengeliteralura.model.DadosLivros;
 import com.renan.challengeliteralura.model.DadosResposta;
 import com.renan.challengeliteralura.model.Livro;
 import com.renan.challengeliteralura.repository.LivrosRepository;
-import com.renan.challengeliteralura.services.AutorRepository;
+import com.renan.challengeliteralura.repository.AutorRepository;
 import com.renan.challengeliteralura.services.ConsumoApi;
 import com.renan.challengeliteralura.services.ConverteDados;
 
@@ -115,13 +115,11 @@ public class Main {
 
         AutorDTO autorDTO = dadosLivros.autores().get(0);
         String nomeAutor = autorDTO.nome();
-//        String nomeAutor = dadosLivros.autores().get(0).nome();
 
         List<Autor> autores = autorRepository.findByNome(nomeAutor);
         Autor autor = autores.isEmpty() ? null : autores.get(0);
 
         if (autor == null) {
-//            autor = new Autor(nomeAutor);
             autor = new Autor(autorDTO);
             autorRepository.save(autor);
         }

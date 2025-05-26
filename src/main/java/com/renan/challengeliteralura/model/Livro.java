@@ -30,24 +30,13 @@ public class Livro {
 
     public Livro(DadosLivros dadosLivros) {
         this.titulo = dadosLivros.titulo();
+
         if (dadosLivros.autores() != null && !dadosLivros.autores().isEmpty()) {
             this.autor = new Autor(dadosLivros.autores().get(0));
         } else {
-            this.autor = null; // ou algum valor padrão, se preferir
+            this.autor = null;
         }
-        //this.autor = dadosLivros.autor();
 
-//        this.autores = dadosLivros.autores().stream()
-//                .map(dto -> {
-//                    Autor autor = new Autor();
-//                    autor.setNome(dto.nome());
-//                    autor.setAnoNascimento(dto.anoNascimento());
-//                    autor.setAnoFalecimento(dto.anoFalecimento());
-//                    autor.adicionarLivro(this);
-//                    return autor;
-//                })
-//                .collect(Collectors.toList());
-//
         this.idiomas = dadosLivros.idiomas();
         this.downloads = dadosLivros.downloads();
     }
@@ -67,24 +56,6 @@ public class Livro {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-
-//    public Autor getautor() {
-//        return autor;
-//    }
-//
-//    public void setautor(Autor autor) {
-//        this.autor = autor;
-//    }
-
-
-//    public List<Autor> getAutores() {
-//        return autores;
-//    }
-//
-//    public void setAutores(List<Autor> autores) {
-//        this.autores = autores;
-//    }
-
 
     public Autor getAutor() {
         return autor;
@@ -112,10 +83,6 @@ public class Livro {
 
     @Override
     public String toString() {
-//        String autorString = autores.stream()
-//                .map(Autor::getNomeSimples)
-//                .collect(Collectors.joining("\n"));
-
         String idiomasString = idiomas.stream()
                 .map(String::toString)
                 .collect(Collectors.joining("\n"));
@@ -123,7 +90,6 @@ public class Livro {
         return "\n~*~*~~*~ LIVRO ~*~*~~*~" +
                "\nTítulo: " + titulo +
                "\nAutor: " + autor.getNome()  +
-               //"\nAutor: " + autorString  +
                "\nIdiomas: " + idiomasString +
                "\nDownloads: " + downloads;
     }

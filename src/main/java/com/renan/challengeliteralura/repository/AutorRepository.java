@@ -1,4 +1,4 @@
-package com.renan.challengeliteralura.services;
+package com.renan.challengeliteralura.repository;
 
 import com.renan.challengeliteralura.model.Autor;
 import org.springframework.data.jpa.repository.JpaRepository;

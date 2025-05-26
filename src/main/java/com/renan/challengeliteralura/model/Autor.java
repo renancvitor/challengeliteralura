@@ -25,12 +25,6 @@ public class Autor {
 
     public Autor() {}
 
-//    public Autor(DadosLivros dadosLivros) {
-//        this.nome = dadosLivros.autores().get(0).nome();
-//        this.anoNascimento = dadosLivros.autores().get(0).anoNascimento();
-//        this.anoFalecimento = dadosLivros.autores().get(0).anoFalecimento();
-//    }
-
     public Autor(String nome) {
         this.nome = nome;
     }
