@@ -31,6 +31,10 @@ public class Autor {
 //        this.anoFalecimento = dadosLivros.autores().get(0).anoFalecimento();
 //    }
 
+    public Autor(String nome) {
+        this.nome = nome;
+    }
+
     public Autor(AutorDTO autorDTO) {
         this.nome = autorDTO.nome();
         this.anoNascimento = autorDTO.anoNascimento();
