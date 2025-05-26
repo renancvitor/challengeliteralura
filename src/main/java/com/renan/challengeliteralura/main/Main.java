@@ -147,8 +147,37 @@ public class Main {
     }
 
     private void listarAutoresVivosPorXAno() {
+        System.out.print("Digite o ano para verificar quais autores estavam vivos:  ");
+        var anoConsulta = scanner.nextInt();
+        scanner.nextLine();
+
+        autorRepository.findAutoresVivosNoAno(anoConsulta)
+                .forEach(System.out::println);
     }
 
     private void listarLivrosPorIdioma() {
+        var menuIdioma = """
+        \nEscolha a sigla do idioma que deseja buscar os livros
+        en - Inglês
+        es - Espanhol
+        fr - Franês
+        pt - Português                    
+        """;
+        System.out.println(menuIdioma);
+
+        System.out.print("Digite a sigla do idioma:  ");
+        String idiomaEscolhido = scanner.nextLine().trim().toLowerCase();
+
+        List<Livro> livrosPorIdioma = livrosRepository.findByIdiomasContaining(idiomaEscolhido);
+
+        if (livrosPorIdioma.isEmpty()) {
+            System.out.println("\nNenhum livro encontrado para o idioma: " + idiomaEscolhido);
+        } else {
+            System.out.println("\nLivros no idioma \"" + idiomaEscolhido + "\":");
+            livrosPorIdioma.stream()
+                    .sorted(Comparator.comparing(Livro::getTitulo))
+                    .forEach(System.out::println);
+
+        }
     }
 }
