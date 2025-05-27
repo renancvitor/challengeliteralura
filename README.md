@@ -1,4 +1,4 @@
-<h1 align="center">:📚 Challenge LiterAlura (<a href="https://www.alura.com.br">Alura</a>) 📖<br>
+<h1 align="center">📚 Challenge LiterAlura (<a href="https://www.alura.com.br">Alura</a>) 📖<br>
   <img src="https://img.shields.io/badge/status-Concluído-brightgreen">
 </h1>
 
