@@ -30,7 +30,7 @@ Este projeto utiliza a [Gutendex](https://gutendex.com/), uma API gratuita que f
 
 <h2 align="center">🧰 Ferramentas Utilizada</h2>
 
-- 💻 [Eclipse IDE](https://www.eclipse.org/): Ambiente de desenvolvimento integrado.
+- 💻 [IntelliJ IDE](https://www.jetbrains.com/pt-br/idea/#): Ambiente de desenvolvimento integrado.
 - 🐘 [PostgreSQL](https://www.postgresql.org/): Sistema de gerenciamento de banco de dados relacional de código aberto.
 
 ---
@@ -42,11 +42,11 @@ Este projeto utiliza a [Gutendex](https://gutendex.com/), uma API gratuita que f
 │   ├── dto
 │   │    └── AutorDTO
 │   ├── main
-│   │    └── Main.java                  # Classe principal
+│   │    └── Main.java
 │   ├── model
 │   │    ├── Autor.java
 │   │    ├── Livro.java
-│   │    ├── DadosAutores.java          # Record para mapear o JSON da API
+│   │    ├── DadosAutores.java
 │   │    ├── DadosLivros.java
 │   │    └── DadosResposta.java
 │   ├── repository
@@ -91,7 +91,7 @@ Este projeto utiliza a [Gutendex](https://gutendex.com/), uma API gratuita que f
    spring.datasource.password=sua_senha
    ```
 3. **Compile e execute**:
-- Abra o projeto na sua IDE (ex.: Eclipse).
+- Abra o projeto na sua IDE (ex.: IntelliJ).
 - Localize a classe `ChallengeliteraluraApplication`.
 - Execute como uma aplicação Java.
 4. **Siga as instruções no terminal para realizar as operações.**
@@ -131,7 +131,7 @@ Downloads: 1543
 
 <h2 align="center">📢 Agradecimento</h2>
 
-Agradeço à [alura](https://www.alura.com.br) por essa oportunidade de aprendizado contínuo e por incentivar o desenvolvimento de habilidades de programação de forma estruturada e desafiadora. 🚀
+Agradeço à [Alura](https://www.alura.com.br) por essa oportunidade de aprendizado contínuo e por incentivar o desenvolvimento de habilidades de programação de forma estruturada e desafiadora. 🚀
 
 ---
 
