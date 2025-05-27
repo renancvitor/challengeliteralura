@@ -53,6 +53,7 @@ public class Main {
                     """;
 
             System.out.println(menu);
+            System.out.print("Opção:  ");
             opcao = scanner.nextInt();
             scanner.nextLine();
 
@@ -161,7 +162,7 @@ public class Main {
         en - Inglês
         es - Espanhol
         fr - Franês
-        pt - Português                    
+        pt - Português
         """;
         System.out.println(menuIdioma);
 
