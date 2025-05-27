@@ -17,7 +17,6 @@ public class ChallengeliteraluraApplication implements CommandLineRunner {
 	@Autowired
 	private LivrosRepository livrosRepository;
 
-
 	public static void main(String[] args) {
 		SpringApplication.run(ChallengeliteraluraApplication.class, args);
 	}

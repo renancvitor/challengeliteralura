@@ -177,7 +177,6 @@ public class Main {
             livrosPorIdioma.stream()
                     .sorted(Comparator.comparing(Livro::getTitulo))
                     .forEach(System.out::println);
-
         }
     }
 }
