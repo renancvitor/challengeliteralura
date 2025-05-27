@@ -45,7 +45,7 @@ public class Main {
                     Escolha o número de sua opção:
                     ******************************
                     1. Buscar livro pelo título
-                    2. Listar livro pelo título
+                    2. Listar livros pelo título
                     3. Listar autores registrados
                     4. Listar autores vivos em um determinado ano
                     5. Listar livros em um determinado idioma
@@ -128,7 +128,8 @@ public class Main {
         autor.getLivros().add(livro);
 
         livrosRepository.save(livro);
-        System.out.println(dadosLivros);
+
+        System.out.println(livro);
     }
 
     private void listarLivro() {
