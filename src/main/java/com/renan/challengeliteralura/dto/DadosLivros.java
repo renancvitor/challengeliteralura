@@ -1,8 +1,7 @@
-package com.renan.challengeliteralura.model;
+package com.renan.challengeliteralura.dto;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.renan.challengeliteralura.dto.AutorDTO;
 
 import java.util.List;
 

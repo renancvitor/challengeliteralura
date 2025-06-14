@@ -2,8 +2,8 @@ package com.renan.challengeliteralura.main;
 
 import com.renan.challengeliteralura.dto.AutorDTO;
 import com.renan.challengeliteralura.model.Autor;
-import com.renan.challengeliteralura.model.DadosLivros;
-import com.renan.challengeliteralura.model.DadosResposta;
+import com.renan.challengeliteralura.dto.DadosLivros;
+import com.renan.challengeliteralura.dto.DadosResposta;
 import com.renan.challengeliteralura.model.Livro;
 import com.renan.challengeliteralura.repository.LivrosRepository;
 import com.renan.challengeliteralura.repository.AutorRepository;

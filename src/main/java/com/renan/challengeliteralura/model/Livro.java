@@ -1,5 +1,6 @@
 package com.renan.challengeliteralura.model;
 
+import com.renan.challengeliteralura.dto.DadosLivros;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
