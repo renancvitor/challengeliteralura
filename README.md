@@ -41,21 +41,21 @@ Este projeto utiliza a [Gutendex](https://gutendex.com/), uma API gratuita que f
 ├── com.renan.challengeliteralura
 │   ├── dto
 │   │    └── AutorDTO
+│   │    ├── DadosAutores.java
+│   │    ├── DadosLivros.java
+│   │    └── DadosResposta.java
 │   ├── main
 │   │    └── Main.java
 │   ├── model
 │   │    ├── Autor.java
-│   │    ├── Livro.java
-│   │    ├── DadosAutores.java
-│   │    ├── DadosLivros.java
-│   │    └── DadosResposta.java
+│   │    └── ivro.java
 │   ├── repository
 │   │    ├── AutorRepository.java
+│   │    ├── IConversorDados.java
 │   │    └── LivroRepository.java
 │   ├── service
-│   │    ├── ConsumoApi.java
-│   │    ├── ConversorDados.java
-│   │    └── IConversorDados.java
+│   │    └── ConsumoApi.java
+│   │    └── ConversorDados.java
 │   └── ChallengeliteraluraApplication.java
 └── README.md
 ```
